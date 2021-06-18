@@ -25,8 +25,18 @@ jobs:
             wget https://download.oracle.com/otn_software/linux/instantclient/185000/oracle-instantclient18.5-basic-18.5.0.0.0-3.x86_64.rpm
             sudo apt-get install alien
             sudo alien -i oracle-instantclient18.5-*.rpm
+        env:
+          USE_DOCKER_CONNECTION: true
+          ORACLE_HOME: /usr/lib/oracle/18.5/client64
+          PATH: $ORACLE_HOME/bin:$PATH
+          LD_LIBRARY_PATH: $ORACLE_HOME/lib
 
       - run: npm i
+        env:
+          USE_DOCKER_CONNECTION: true
+          ORACLE_HOME: /usr/lib/oracle/18.5/client64
+          PATH: $ORACLE_HOME/bin:$PATH
+          LD_LIBRARY_PATH: $ORACLE_HOME/lib
 
       - run: npm run test-with-db
         env:
