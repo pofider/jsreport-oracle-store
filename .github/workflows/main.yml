@@ -26,8 +26,9 @@ jobs:
             sudo apt-get install alien
             sudo alien -i oracle-instantclient18.5-*.rpm      
             echo "/usr/lib/oracle/18.5/client64/bin" >> $GITHUB_PATH
+            echo "ORACLE_HOME=/usr/lib/oracle/18.5/client64" >> $GITHUB_ENV
+            echo "LD_LIBRARY_PATH=/usr/lib/oracle/18.5/client64/lib" >> $GITHUB_ENV
 
       - run: npm i    
 
-      - run: |            
-            npm run test-with-db        
+      - run: npm run test-with-db
